@@ -37,6 +37,9 @@ class login extends StatelessWidget {
           child: Text("Submit"),
           onPressed: onSubmit,
         ),
+        TextFormField(
+          decoration: new InputDecoration(labelText: 'Enter something'),
+        ),
       ],
     );
   }
