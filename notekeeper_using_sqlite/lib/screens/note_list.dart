@@ -25,6 +25,7 @@ class NoteListState extends State<NoteList> {
   Widget build(BuildContext context) {
 
     if (noteList == null) {
+      print("inside notlist");
       noteList = List<Note>();
       updateListView();
     }
@@ -40,10 +41,10 @@ class NoteListState extends State<NoteList> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
-          navigateToDetail(Note('', '', 2), 'Add Note');
+          navigateToDetail(Note('', '', 1), 'Add Note');
         },
 
-        tooltip: 'Add Note',
+        tooltip: 'Add Notes',
 
         child: Icon(Icons.add),
 
@@ -52,12 +53,15 @@ class NoteListState extends State<NoteList> {
   }
 
   ListView getNoteListView() {
+    print("inside body");
 
     TextStyle titleStyle = Theme.of(context).textTheme.subhead;
 
     return ListView.builder(
       itemCount: count,
       itemBuilder: (BuildContext context, int position) {
+
+        print("inside");
         return Card(
           color: Colors.white,
           elevation: 2.0,
@@ -137,7 +141,9 @@ class NoteListState extends State<NoteList> {
   }
 
   void navigateToDetail(Note note, String title) async {
+
     bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      print("inside navigator");
       return NoteDetail(note, title);
     }));
 

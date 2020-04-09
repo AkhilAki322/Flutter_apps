@@ -19,7 +19,7 @@ class DatabaseHelper {
   DatabaseHelper._createInstance(); // Named constructor to create instance of DatabaseHelper
 
   factory DatabaseHelper() {
-
+    print("dddddddd");
     if (_databaseHelper == null) {
       _databaseHelper = DatabaseHelper._createInstance(); // This is executed only once, singleton object
     }
@@ -29,6 +29,7 @@ class DatabaseHelper {
   Future<Database> get database async {
 
     if (_database == null) {
+
       _database = await initializeDatabase();
     }
     return _database;
@@ -45,13 +46,14 @@ class DatabaseHelper {
   }
 
   void _createDb(Database db, int newVersion) async {
-
+    print("table created");
     await db.execute('CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
         '$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)');
   }
 
   // Fetch Operation: Get all note objects from database
   Future<List<Map<String, dynamic>>> getNoteMapList() async {
+
     Database db = await this.database;
 
 //		var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
@@ -93,13 +95,13 @@ class DatabaseHelper {
 
     var noteMapList = await getNoteMapList(); // Get 'Map List' from database
     int count = noteMapList.length;         // Count the number of map entries in db table
-
+print(noteMapList);
     List<Note> noteList = List<Note>();
     // For loop to create a 'Note List' from a 'Map List'
     for (int i = 0; i < count; i++) {
       noteList.add(Note.fromMapObject(noteMapList[i]));
     }
-
+print(noteList);
     return noteList;
   }
 

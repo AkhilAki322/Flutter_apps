@@ -21,6 +21,7 @@ class Note {
   String get date => _date;
 
   set title(String newTitle) {
+    print("inside not title");
     if (newTitle.length <= 255) {
       this._title = newTitle;
     }
@@ -33,6 +34,7 @@ class Note {
   }
 
   set priority(int newPriority) {
+    print("inside note priroty");
     if (newPriority >= 1 && newPriority <= 2) {
       this._priority = newPriority;
     }
@@ -44,6 +46,7 @@ class Note {
 
   // Convert a Note object into a Map object
   Map<String, dynamic> toMap() {
+    print("Convert a Note object into a Map object");
 
     var map = Map<String, dynamic>();
     if (id != null) {
@@ -59,6 +62,7 @@ class Note {
 
   // Extract a Note object from a Map object
   Note.fromMapObject(Map<String, dynamic> map) {
+    print("Extract a Note object from a Map object");
     this._id = map['id'];
     this._title = map['title'];
     this._description = map['description'];

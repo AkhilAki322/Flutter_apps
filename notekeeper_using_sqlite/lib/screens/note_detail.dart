@@ -35,7 +35,8 @@ class NoteDetailState extends State<NoteDetail> {
   Widget build(BuildContext context) {
 
     TextStyle textStyle = Theme.of(context).textTheme.title;
-
+    print("inside notedetail");
+//    print(note.priority);
     titleController.text = note.title;
     descriptionController.text = note.description;
 
@@ -68,6 +69,8 @@ class NoteDetailState extends State<NoteDetail> {
                 ListTile(
                   title: DropdownButton(
                       items: _priorities.map((String dropDownStringItem) {
+                        print("priority");
+//                        print(dropDownStringItem);
                         return DropdownMenuItem<String> (
                           value: dropDownStringItem,
                           child: Text(dropDownStringItem),
@@ -226,6 +229,7 @@ class NoteDetailState extends State<NoteDetail> {
 
     note.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
+    print(note.id);
     if (note.id != null) {  // Case 1: Update operation
       result = await helper.updateNote(note);
     } else { // Case 2: Insert Operation
