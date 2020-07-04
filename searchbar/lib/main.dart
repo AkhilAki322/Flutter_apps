@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
+              print(context);
               showSearch(context: context, delegate: Datasearch());
             },
           )
@@ -40,6 +41,7 @@ class Datasearch extends SearchDelegate<String>{
   ];
   @override
   List<Widget> buildActions(BuildContext context) {
+    print("buildaction");
     return [IconButton(icon: Icon(Icons.clear), onPressed: () {
       query = "";
     },)];
@@ -47,6 +49,7 @@ class Datasearch extends SearchDelegate<String>{
 
   @override
   Widget buildLeading(BuildContext context) {
+    print("buildleading");
     return IconButton(
       icon: AnimatedIcon(
         icon: AnimatedIcons.menu_arrow,
@@ -60,6 +63,7 @@ class Datasearch extends SearchDelegate<String>{
 
   @override
   Widget buildResults(BuildContext context) {
+    print("buildresult");
     return Container(
         height: 100,
         width: 100,
@@ -74,6 +78,7 @@ class Datasearch extends SearchDelegate<String>{
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    print("buildsuggestion");
     final suggestionList = query.isEmpty ? recentCities : cities.where((p) =>
         p.startsWith(query)).toList();
     return ListView.builder(
